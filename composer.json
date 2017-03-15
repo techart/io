@@ -1,0 +1,21 @@
+{
+    "name": "techart/io",
+    "description": "Ввод/вывод",
+    "version" : "3.0.4",
+    "authors": [
+        {
+            "name": "Techart",
+            "homepage": "http://web-techart.ru/"
+        }
+    ],
+    "autoload" : {
+        "psr-4": {
+            "Techart\\IO\\": "src/IO"
+        },
+        "classmap": ["src/IO.php"]
+    },
+    "require": {
+        "PHP": ">=5.5",
+        "techart/core": ">=3.0.0"
+    }
+}

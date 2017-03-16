@@ -9,22 +9,22 @@ namespace Techart\IO\Stream;
 class TemporaryStream extends ResourceStream
 {
 
-	/**
-	 * Конструктор
-	 *
-	 */
-	public function __construct()
-	{
-		parent::__construct(tmpfile());
-	}
+    /**
+     * Конструктор
+     *
+     */
+    public function __construct()
+    {
+        parent::__construct(tmpfile());
+    }
 
-	/**
-	 * Декструктор
-	 *
-	 */
-	public function __destruct()
-	{
-		$this->close();
-	}
+    /**
+     * Декструктор
+     *
+     */
+    public function __destruct()
+    {
+        $this->close();
+    }
 
 }

@@ -21,80 +21,80 @@ namespace Techart\IO\FS;
  */
 class Stat implements \Techart\Core\PropertyAccessInterface
 {
-	protected $stat = array();
+    protected $stat = array();
 
-	public function __construct($object)
-	{
-		if (!$stat = \Techart\Core\Types::is_resource($object) ? @fstat($object) : @stat((string)$object)) {
-			throw new \Techart\IO\FS\StatException($object);
-		}
+    public function __construct($object)
+    {
+        if (!$stat = \Techart\Core\Types::is_resource($object) ? @fstat($object) : @stat((string)$object)) {
+            throw new \Techart\IO\FS\StatException($object);
+        }
 
-		foreach ($stat as $k => $v) {
-			switch ($k) {
-				case 'atime':
-				case 'mtime':
-				case 'ctime':
-					$this->stat[$k] = \DateTime($v);
-					break;
-				default:
-					$this->stat[$k] = $v;
-			}
-		}
-	}
+        foreach ($stat as $k => $v) {
+            switch ($k) {
+                case 'atime':
+                case 'mtime':
+                case 'ctime':
+                    $this->stat[$k] = \DateTime($v);
+                    break;
+                default:
+                    $this->stat[$k] = $v;
+            }
+        }
+    }
 
-	/**
-	 * Возвращает значние свойства
-	 *
-	 * @param string $property
-	 *
-	 * @return mixed
-	 * @throws \Techart\Core\MissingPropertyException
-	 */
-	public function __get($property)
-	{
-		if (isset($this->stat[$property])) {
-			return $this->stat[$property];
-		} else {
-			throw new \Techart\Core\MissingPropertyException($property);
-		}
-	}
+    /**
+     * Возвращает значние свойства
+     *
+     * @param string $property
+     *
+     * @return mixed
+     * @throws \Techart\Core\MissingPropertyException
+     */
+    public function __get($property)
+    {
+        if (isset($this->stat[$property])) {
+            return $this->stat[$property];
+        } else {
+            throw new \Techart\Core\MissingPropertyException($property);
+        }
+    }
 
-	/**
-	 * Устанавливает значение свойства
-	 *
-	 * @param string $property
-	 * @param        $value
-	 *
-	 * @return mixed
-	 * @throws \Techart\Core\ReadOnlyObjectException
-	 */
-	public function __set($property, $value)
-	{
-		throw new \Techart\Core\ReadOnlyObjectException($this);
-	}
+    /**
+     * Устанавливает значение свойства
+     *
+     * @param string $property
+     * @param        $value
+     *
+     * @return mixed
+     * @throws \Techart\Core\ReadOnlyObjectException
+     */
+    public function __set($property, $value)
+    {
+        throw new \Techart\Core\ReadOnlyObjectException($this);
+    }
 
-	/**
-	 * Проверяет установку значения свойства
-	 *
-	 * @param string $property
-	 *
-	 * @return boolean
-	 */
-	public function __isset($property)
-	{
-		return isset($this->stat[$property]);
-	}
+    /**
+     * Проверяет установку значения свойства
+     *
+     * @param string $property
+     *
+     * @return boolean
+     */
+    public function __isset($property)
+    {
+        return isset($this->stat[$property]);
+    }
 
-	/**
-	 * Удаляет свойство
-	 *
-	 * @param string $property
-	 *
-	 * @throws \Techart\Core\ReadOnlyObjectException
-	 */
-	public function __unset($property)
-	{
-		throw new \Techart\Core\ReadOnlyObjectException($this);
-	}
+    /**
+     * Удаляет свойство
+     *
+     * @param string $property
+     *
+     * @throws \Techart\Core\ReadOnlyObjectException
+     */
+    public function __unset($property)
+    {
+        throw new \Techart\Core\ReadOnlyObjectException($this);
+    }
 
 }

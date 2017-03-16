@@ -19,25 +19,25 @@ namespace Techart\IO\Stream;
 interface SeekInterface
 {
 
-	const SEEK_SET = 0;
-	const SEEK_CUR = 1;
-	const SEEK_END = 2;
+    const SEEK_SET = 0;
+    const SEEK_CUR = 1;
+    const SEEK_END = 2;
 
-	/**
-	 * Устанавливает текущую позицию в потоке
-	 *
-	 * @param int $offset
-	 * @param int $whence
-	 *
-	 * @return number
-	 */
-	public function seek($offset, $whence);
+    /**
+     * Устанавливает текущую позицию в потоке
+     *
+     * @param int $offset
+     * @param int $whence
+     *
+     * @return number
+     */
+    public function seek($offset, $whence);
 
-	/**
-	 * Возвращает текущую позицию в потоке
-	 *
-	 * @return number
-	 */
-	public function tell();
+    /**
+     * Возвращает текущую позицию в потоке
+     *
+     * @return number
+     */
+    public function tell();
 
 }

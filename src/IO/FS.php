@@ -5,6 +5,9 @@ namespace Techart\IO;
 
 class FS
 {
+    /**
+     * @var array
+     */
     static protected $options = array(
         'dir_mod' => 0775,
         'file_mod' => 0664,
@@ -15,6 +18,25 @@ class FS
     );
 
     /**
+     * @var bool
+     */
+    static protected $optionsSetup = false;
+
+
+    /**
+     *
+     */
+    static protected function setupOptions()
+    {
+        if (!self::$optionsSetup) {
+            foreach (\Techart\Core::config()->loadScope('fs') as $k => $v) {
+                self::$options[$k] = $v;
+            }
+            self::$optionsSetup = true;
+        }
+    }
+
+    /**
      * Устанавливает опции модуля
      *
      * @param array $options
@@ -23,6 +45,7 @@ class FS
      */
     static public function options(array $options = array())
     {
+        self::setupOptions();
         if (count($options)) {
             \Techart\Core\Arrays::update(self::$options, $options);
         }
@@ -39,6 +62,7 @@ class FS
      */
     static public function option($name, $value = null)
     {
+        self::setupOptions();
         $prev = isset(self::$options[$name]) ? self::$options[$name] : null;
         if ($value !== null) {
             self::options(array($name => $value));
@@ -204,6 +228,10 @@ class FS
         return $mode ? @chmod((string)$file, $mode) : false;
     }
 
+    /**
+     * @param $path
+     * @param null $mode
+     */
     public static function chmod_recursive($path, $mode = null)
     {
         $object = self::file_object_for($path);

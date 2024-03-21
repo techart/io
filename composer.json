@@ -1,7 +1,7 @@
 {
     "name": "techart/io",
     "description": "Ввод/вывод",
-    "version" : "3.0.16",
+    "version" : "3.0.18",
     "license": "Apache-2.0",
     "authors": [
         {
